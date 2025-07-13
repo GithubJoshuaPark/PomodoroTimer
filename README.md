@@ -30,6 +30,11 @@ This is a simple web application that combines a stopwatch, a countdown timer, a
     *   Selectable alarm sounds (Rooster Crowing or Sci-Fi Alarm).
     *   Usage manual displayed dynamically based on the selected feature.
 
+*   **Progressive Web App (PWA):**
+    *   **Installable:** Add the app to your home screen on mobile devices or desktop.
+    *   **Offline Support:** Basic offline capabilities through a service worker, caching essential assets.
+    *   **Rich Previews:** Configured with `manifest.json` and `images/thumbnail.png` to display a rich preview (thumbnail, title, description) when shared on social media or messaging apps (e.g., when sharing `https://pomodoroex.web.app/`).
+
 *   **Project Information:**
     *   Includes a favicon for browser tabs.
     *   Copyright information in the footer.
@@ -48,9 +53,13 @@ This is a simple web application that combines a stopwatch, a countdown timer, a
 ├── index.html          # Main HTML file for the application
 ├── style.css           # Stylesheet for the application's appearance
 ├── script.js           # JavaScript for interactive functionalities
+├── manifest.json       # Web App Manifest for PWA features
+├── service-worker.js   # Service Worker for offline capabilities
 ├── favicon.ico         # Favicon for the browser tab
 ├── rooster-crowing.wav # Alarm sound file
-└── sci-fi-alarm.wav    # Alarm sound file
+├── sci-fi-alarm.wav    # Alarm sound file
+└── images/
+    └── thumbnail.png   # Thumbnail image for PWA rich previews
 ```
 
 ## Local Development
