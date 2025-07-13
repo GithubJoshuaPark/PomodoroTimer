@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="usageManual" class="usage-manual">
+        <h2>Usage Manual</h2>
+        <ol id="manualList"></ol>
+    </div>
+    <main>
+        <div class="mode-switcher">
+            <button id="stopwatchModeBtn" class="active">Stopwatch</button>
+            <button id="timerModeBtn">Timer</button>
+            <button id="pomodoroModeBtn">Pomodoro</button>
+        </div>
+
+        <div class="sound-selection">
+            <span>Alarm Sound:</span>
+            <button id="roosterSoundBtn" class="sound-btn active">Rooster</button>
+            <button id="sciFiSoundBtn" class="sound-btn">Sci-Fi</button>
+        </div>
+
+        <div id="stopwatch" class="mode-container active">
+            <h1>Stopwatch</h1>
+            <div class="display stopwatch-display">00:00:00.000</div>
+            <div class="controls">
+                <button id="startBtn">Start</button>
+                <button id="stopBtn">Stop</button>
+                <button id="resetBtn">Reset</button>
+                <button id="lapBtn">Lap</button>
+            </div>
+            <div class="laps-container">
+                <ul id="lapsList"></ul>
+            </div>
+        </div>
+
+        <div id="timer" class="mode-container">
+            <h1>Timer</h1>
+            <div class="display timer-display">00:00:00</div>
+            <div class="timer-inputs">
+                <input type="number" id="hours" placeholder="HH" min="0" max="23" title="Set hours for the timer (0-23)">
+                <input type="number" id="minutes" placeholder="MM" min="0" max="59" title="Set minutes for the timer (0-59)">
+                <input type="number" id="seconds" placeholder="SS" min="0" max="59" title="Set seconds for the timer (0-59)">
+            </div>
+            <div class="controls">
+                <button id="startTimerBtn">Start</button>
+                <button id="stopTimerBtn">Stop</button>
+                <button id="resetTimerBtn">Reset</button>
+            </div>
+        </div>
+
+        <div id="pomodoro" class="mode-container">
+            <h1>Pomodoro Timer</h1>
+            <div class="display pomodoro-display">25:00</div>
+            <div class="pomodoro-controls controls">
+                <button id="startPomodoroBtn">Start</button>
+                <button id="stopPomodoroBtn">Stop</button>
+                <button id="resetPomodoroBtn">Reset</button>
+            </div>
+            <div class="pomodoro-settings">
+                <label for="workDuration">Work (minutes):</label>
+                <input type="number" id="workDuration" value="25" min="1" title="Set the duration for work sessions in minutes">
+                <br>
+                <label for="breakDuration">Break (minutes):</label>
+                <input type="number" id="breakDuration" value="5" min="1" title="Set the duration for break sessions in minutes">
+            </div>
+        </div>
+
+    </main>
+
+    <audio id="alarmSound" src="./rooster-crowing.wav" preload="auto"></audio>
+
+    <footer>
+        <p>&copy; 2024 soro.soft copyright</p>
+    </footer>
+
+    <script src="./script.js"></script>
+
+    <div id="customAlert" class="alert-container">
+        <div class="alert-box">
+            <p id="alertMessage"></p>
+            <button id="alertOkBtn">OK</button>
+        </div>
+    </div>
+</body>
+</html>
