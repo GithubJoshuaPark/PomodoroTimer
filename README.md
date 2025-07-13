@@ -85,3 +85,51 @@ This project can be easily deployed to Netlify for free hosting.
 4.  Netlify will automatically upload and deploy your site.
 
 After deployment, Netlify will provide you with a unique URL to access your live application. You can also configure a custom domain if desired.
+
+## Deployment to Firebase Hosting
+
+This project can also be deployed to Firebase Hosting. Assuming you have a Firebase project named `RootBridge` and a hosting site named `pomodoroex`.
+
+1.  **Install Firebase CLI:** If you haven't already, install the Firebase CLI globally:
+    ```bash
+    npm install -g firebase-tools
+    ```
+
+2.  **Log in to Firebase:** Authenticate your Firebase CLI with your Google account. This command will open a browser window for you to log in.
+    ```bash
+    firebase login
+    ```
+
+3.  **Initialize Firebase Project:** Navigate to your project directory (`/Users/joshuapark/Desktop/DevAndStudy/GeminiCliEx/`) in your terminal and run the initialization command. This is an interactive process:
+    ```bash
+    firebase init
+    ```
+    *   When prompted, use the spacebar to select `Hosting: Configure files for Firebase Hosting...` and press Enter.
+    *   Choose `Use an existing project` and select your Firebase project (`RootBridge`).
+    *   For the public directory, type `.` (a single dot) and press Enter.
+    *   For configuring as a single-page app, type `No` and press Enter.
+    *   For setting up automatic deploys with GitHub, type `No` and press Enter.
+    *   This will create `firebase.json` and `.firebaserc` files in your project directory.
+
+4.  **Specify Hosting Site (for multiple sites):** If you have multiple hosting sites within your Firebase project (e.g., `pomodoroex` and `rootbriddge-9b225`), you need to explicitly tell Firebase which site to deploy to. Open your `firebase.json` file and add the `"site"` property within the `"hosting"` object, like so:
+
+    ```json
+    {
+      "hosting": {
+        "public": ".",
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ],
+        "site": "pomodoroex"  // Add this line with your desired hosting site ID
+      }
+    }
+    ```
+
+5.  **Deploy your Project:** Once the `firebase.json` and `.firebaserc` files are present (and `firebase.json` is configured for the correct site), you can deploy your project to Firebase Hosting:
+    ```bash
+    firebase deploy --only hosting
+    ```
+
+After successful deployment, Firebase will provide you with a Hosting URL where your application is live.
