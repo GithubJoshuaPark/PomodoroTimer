@@ -303,6 +303,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const offset = circumference - (pomodoroState.remainingTime / totalDuration) * circumference;
         pomodoroProgress.style.strokeDashoffset = offset;
 
+        // Change color based on work/break time
+        if (pomodoroState.isWorkTime) {
+            pomodoroProgress.style.stroke = 'orange';
+        } else {
+            pomodoroProgress.style.stroke = 'green';
+        }
+
         const minutes = Math.floor(pomodoroState.remainingTime / 60);
         const seconds = pomodoroState.remainingTime % 60;
         const minuteRotation = (minutes / 60) * 360 + (seconds / 60) * 6;
