@@ -3,18 +3,24 @@ body {
     flex-direction: column;
     justify-content: space-between; /* Pushes content to top and footer to bottom */
     min-height: 100vh; /* Ensures body takes at least full viewport height */
-    background-color: #f0f0f0;
-    font-family: sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    color: #333;
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
 }
 
 .accordion-container {
     width: 100%;
     max-width: 800px;
     margin: 20px auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: none;
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background-color: white;
 }
 
 .accordion-item {
@@ -26,27 +32,33 @@ body {
 }
 
 .accordion-header {
-    background-color: #f7f7f7;
-    color: #333;
+    background-color: #f8f9fa;
+    color: #2c3e50;
     cursor: pointer;
-    padding: 15px;
+    padding: 18px 20px;
     width: 100%;
     border: none;
     text-align: left;
     outline: none;
     font-size: 1.1em;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-left: 4px solid transparent;
 }
 
 .accordion-header:hover {
-    background-color: #e9e9e9;
+    background-color: #f1f3f5;
+    border-left: 4px solid #007bff;
 }
 
 .accordion-header.active {
-    background-color: #e0e0e0;
+    background-color: #e9ecef;
+    border-left: 4px solid #007bff;
+    color: #007bff;
 }
 
 .accordion-header:after {
@@ -61,12 +73,13 @@ body {
 }
 
 .accordion-content {
-    padding: 0 15px;
+    padding: 0 20px;
     background-color: white;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
     text-align: left;
+    border-left: 4px solid transparent;
 }
 
 .accordion-content ol {
@@ -88,16 +101,23 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 30px;
     width: 100%;
     max-width: 800px; /* Limit width for larger screens */
     box-sizing: border-box; /* Include padding in width */
     margin: 0 auto; /* Center the main content horizontally */
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
 }
 
 h1 {
     font-size: 3em;
     margin-bottom: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 }
 
 .working-mode {
@@ -119,31 +139,51 @@ h1 {
 }
 
 .mode-switcher {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
 }
 
 .mode-switcher button {
-    font-size: 1em;
-    padding: 10px 20px;
-    margin: 0 5px;
+    font-size: 1.1em;
+    padding: 12px 24px;
     cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: white;
-    transition: background-color 0.3s, color 0.3s;
+    border: none;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 180px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .mode-switcher button.active {
     background-color: #007bff;
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.mode-switcher button:hover:not(.active) {
+    background-color: #e9ecef;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 
 .sound-selection {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .sound-selection span {
@@ -152,18 +192,27 @@ h1 {
 }
 
 .sound-btn {
-    font-size: 0.9em;
-    padding: 8px 15px;
+    font-size: 0.95em;
+    padding: 10px 18px;
     cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: none;
+    border-radius: 6px;
     background-color: white;
-    transition: background-color 0.3s, color 0.3s;
+    color: #495057;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .sound-btn.active {
     background-color: #28a745;
     color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.sound-btn:hover:not(.active) {
+    background-color: #e9ecef;
+    transform: translateY(-1px);
 }
 
 .sound-btn:hover {
@@ -180,15 +229,21 @@ h1 {
 
 .display {
     font-size: 4em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-family: 'Courier New', Courier, monospace;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .pomodoro-display {
     position: relative;
-    width: 220px;
-    height: 220px;
-    margin: 20px auto;
+    width: 240px;
+    height: 240px;
+    margin: 30px auto;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
 }
 
 .pomodoro-time-display {
@@ -196,9 +251,14 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.5em;
+    font-size: 2.6em;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 900;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    background-color: rgba(255,255,255,0.3);
+    padding: 5px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
 }
 
 .progress-ring {
@@ -237,70 +297,127 @@ h1 {
 
 .controls button {
     font-size: 1.2em;
-    padding: 10px 20px;
-    margin: 5px;
+    padding: 12px 24px;
+    margin: 8px;
     cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
     color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    letter-spacing: 0.5px;
 }
 
 .controls button:hover {
-    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
 .controls button:disabled {
     background-color: #6c757d;
     cursor: not-allowed;
     opacity: 0.7;
+    transform: none;
+    box-shadow: none;
 }
 
-#startBtn, #startTimerBtn {
+#startBtn, #startTimerBtn, #startPomodoroBtn {
     background-color: #28a745;
+    background-image: linear-gradient(to bottom right, #28a745, #20c997);
 }
 
-#stopBtn, #stopTimerBtn {
+#stopBtn, #stopTimerBtn, #stopPomodoroBtn {
     background-color: #dc3545;
+    background-image: linear-gradient(to bottom right, #dc3545, #e83e8c);
 }
 
-#resetBtn, #resetTimerBtn {
+#resetBtn, #resetTimerBtn, #resetPomodoroBtn {
     background-color: #ffc107;
+    background-image: linear-gradient(to bottom right, #ffc107, #fd7e14);
+    color: #212529;
 }
 
 #lapBtn {
     background-color: #17a2b8;
+    background-image: linear-gradient(to bottom right, #17a2b8, #0dcaf0);
 }
 
 .laps-container {
-    margin-top: 20px;
-    max-height: 150px;
+    margin-top: 25px;
+    max-height: 200px;
     overflow-y: auto;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 400px;
 }
 
 #lapsList {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 #lapsList li {
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
+    padding: 10px 15px;
+    border-bottom: 1px solid #e9ecef;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: space-between;
+    transition: background-color 0.2s ease;
+}
+
+#lapsList li:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+#lapsList li:last-child {
+    border-bottom: none;
 }
 
 .timer-inputs {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .timer-inputs input {
-    width: 60px;
+    width: 70px;
     font-size: 1.5em;
     text-align: center;
-    margin: 0 5px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 10px 5px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    background-color: white;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,0.05);
+}
+
+.timer-inputs input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25), inset 0 2px 3px rgba(0,0,0,0.05);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 /* Custom Alert Styles */
@@ -311,42 +428,57 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    display: none; /* Hidden by default */
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
+.alert-container.show {
+display: flex;
+}
+
 .alert-box {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    width: 300px;
+background-color: white;
+padding: 30px;
+border-radius: 12px;
+text-align: center;
+max-width: 400px;
+width: 90%;
+box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
 #alertMessage {
-    font-size: 1.2em;
-    margin-bottom: 20px;
+font-size: 1.2em;
+margin-bottom: 20px;
+color: #2c3e50;
 }
 
 #alertOkBtn {
-    font-size: 1em;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    padding: 10px 25px;
     background-color: #007bff;
+    background-image: linear-gradient(to bottom right, #007bff, #0056b3);
     color: white;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
 #alertOkBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
     background-color: #0056b3;
 }
 
 .pomodoro-settings {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
     margin-top: 30px;
     padding: 20px;
     background-color: #f9f9f9;
@@ -422,37 +554,42 @@ footer p {
     }
 
     .display {
-        font-size: 3em;
+        font-size: 2.8em;
+        padding: 12px 20px;
     }
 
-    .controls button {
-        font-size: 1em;
-        padding: 8px 15px;
-        margin: 3px;
+    .mode-switcher {
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     .mode-switcher button {
-        font-size: 0.9em;
-        padding: 8px 15px;
+        padding: 10px 15px;
+        font-size: 1em;
+        flex: 1;
+        min-width: 100px;
+    }
+
+    .controls button {
+        padding: 10px 18px;
+        font-size: 1em;
         margin: 0 3px;
     }
 
-    .timer-inputs input,
+    /* Responsive Pomodoro Settings */
     .pomodoro-settings {
         flex-direction: column; /* Stack items vertically on mobile */
         padding: 15px;
         gap: 10px; /* Adjust gap for smaller screens */
     }
 
-    .pomodoro-settings label {
-        font-size: 1em;
+    .pomodoro-settings input {
+        width: 100%;
+        max-width: 150px;
     }
 
-    .pomodoro-settings input {
-        width: 60px; /* Keep a reasonable width */
-        font-size: 1.1em;
-        padding: 6px;
-        margin: 0; /* Reset margin as flex gap handles spacing */
+    .pomodoro-settings label {
+        margin-right: 0;
     }
 
     .alert-box {
@@ -467,6 +604,27 @@ footer p {
     #alertOkBtn {
         font-size: 0.9em;
         padding: 8px 15px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .pomodoro-display {
+        width: 200px;
+        height: 200px;
+    }
+
+    .pomodoro-time-display {
+        font-size: 2.2em;
+    }
+
+    main {
+        padding: 20px 15px;
+    }
+
+    .accordion-container {
+        margin: 15px;
     }
 
     footer {
