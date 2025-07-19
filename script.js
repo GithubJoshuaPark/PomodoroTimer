@@ -38,8 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetTimerBtn = document.getElementById('resetTimerBtn');
 
     // Pomodoro elements
-    const pomodoroDisplay = pomodoroContainer.querySelector('.pomodoro-display');
-    const startPomodoroBtn = document.getElementById('startPomodoroBtn');
+    
+    const pomodoroTimeDisplay = document.getElementById('pomodoroTime');
+    const pomodoroProgress = document.getElementById('pomodoroProgress');
+    const minuteNeedle = document.getElementById('minuteNeedle');
+    const secondNeedle = document.getElementById('secondNeedle');
+    const radius = pomodoroProgress.r.baseVal.value;
+    const circumference = 2 * Math.PI * radius;
+
+    pomodoroProgress.style.strokeDasharray = circumference;
+    pomodoroProgress.style.strokeDashoffset = circumference;
     const stopPomodoroBtn = document.getElementById('stopPomodoroBtn');
     const resetPomodoroBtn = document.getElementById('resetPomodoroBtn');
     const workDurationInput = document.getElementById('workDuration');
@@ -62,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let stopwatchState = { startTime: 0, elapsedTime: 0, timerInterval: null, laps: [] };
     let timerState = { duration: 0, remainingTime: 0, timerInterval: null, isRunning: false };
     let pomodoroState = { 
-        workDuration: 25 * 60, 
-        breakDuration: 5 * 60, 
+        workDuration: parseInt(workDurationInput.value) * 60, 
+        breakDuration: parseInt(breakDurationInput.value) * 60, 
         remainingTime: 25 * 60, 
         timerInterval: null, 
         isWorkTime: true, 
@@ -293,8 +301,25 @@ document.addEventListener('DOMContentLoaded', () => {
     resetTimerBtn.addEventListener('click', resetTimer);
 
     // --- Pomodoro Logic ---
+    function formatPomodoroTime(seconds) {
+        const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+        const s = (seconds % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
     function updatePomodoroDisplay() {
-        pomodoroDisplay.textContent = formatTime(pomodoroState.remainingTime);
+        pomodoroTimeDisplay.textContent = formatPomodoroTime(pomodoroState.remainingTime);
+        const totalDuration = pomodoroState.isWorkTime ? pomodoroState.workDuration : pomodoroState.breakDuration;
+        const offset = circumference - (pomodoroState.remainingTime / totalDuration) * circumference;
+        pomodoroProgress.style.strokeDashoffset = offset;
+
+        const minutes = Math.floor(pomodoroState.remainingTime / 60);
+        const seconds = pomodoroState.remainingTime % 60;
+        const minuteRotation = (minutes / 60) * 360 + (seconds / 60) * 6;
+        const secondRotation = (seconds / 60) * 360;
+
+        minuteNeedle.style.transform = `rotate(${minuteRotation}deg)`;
+        secondNeedle.style.transform = `rotate(${secondRotation}deg)`;
     }
 
     function startPomodoro() {

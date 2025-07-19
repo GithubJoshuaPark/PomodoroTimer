@@ -124,6 +124,57 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
 }
 
+.pomodoro-display {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 20px auto;
+}
+
+.pomodoro-time-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+    fill: transparent;
+    stroke: #e6e6e6;
+    stroke-width: 20;
+}
+
+.progress-ring-circle {
+    fill: transparent;
+    stroke: #007bff;
+    stroke-width: 20;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.minute-needle, .second-needle {
+    stroke-width: 12;
+    stroke-linecap: round;
+    transform-origin: center;
+    transition: transform 1s linear;
+}
+
+.minute-needle {
+    stroke: #333;
+}
+
+.second-needle {
+    stroke: #dc3545;
+    stroke-width: 6;
+}
+
 .controls button {
     font-size: 1.2em;
     padding: 10px 20px;

@@ -71,7 +71,15 @@
 
         <div id="pomodoro" class="mode-container">
             <h1>Pomodoro Timer</h1>
-            <div class="display pomodoro-display">25:00</div>
+            <div class="display pomodoro-display">
+                <svg class="progress-ring" width="220" height="220">
+                    <circle class="progress-ring-bg" cx="110" cy="110" r="100" />
+                    <circle id="pomodoroProgress" class="progress-ring-circle" cx="110" cy="110" r="100" />
+                    <line id="minuteNeedle" class="minute-needle" x1="110" y1="110" x2="110" y2="40" />
+                    <line id="secondNeedle" class="second-needle" x1="110" y1="110" x2="110" y2="20" />
+                </svg>
+                <span id="pomodoroTime" class="pomodoro-time-display">25:00</span>
+            </div>
             <div class="pomodoro-controls controls">
                 <button id="startPomodoroBtn">Start</button>
                 <button id="stopPomodoroBtn">Stop</button>

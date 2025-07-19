@@ -1,6 +1,16 @@
 # Stopwatch, Timer, and Pomodoro App
 
-This is a simple web application that combines a stopwatch, a countdown timer, and a Pomodoro timer into a single, responsive page. It's built using HTML, CSS, and JavaScript, demonstrating basic web development concepts and interactive features.
+This is a simple web application that combines 
+- Stopwatch, 
+- Timer, and 
+- Pomodoro timer into a single, responsive page. 
+It allows users to track time effectively for various tasks,
+whether it's for personal productivity, work sessions, or just keeping track of time in a fun way.
+The application features a user-friendly interface with clear buttons for each mode, making it easy to switch between functionalities. It also includes sound alerts for timer completion and supports Progressive Web App (PWA) features, allowing users to install it on their devices for offline use.
+
+## Project Overview
+
+It's built using HTML, CSS, and JavaScript, demonstrating basic web development concepts and interactive features.
 
 ## Features
 
@@ -20,6 +30,7 @@ This is a simple web application that combines a stopwatch, a countdown timer, a
     *   Automatically switches between work and break sessions.
     *   Plays an alarm sound at the end of each session.
     *   Start, Stop, and Reset functionality for the Pomodoro cycle.
+    *   Circular progress bar with animated minute and second needles to visually represent remaining time.
 
 *   **User-Friendly Interface:**
     *   Intuitive mode switcher to toggle between Stopwatch, Timer, and Pomodoro.
@@ -29,6 +40,7 @@ This is a simple web application that combines a stopwatch, a countdown timer, a
     *   Custom alert box for a consistent user experience.
     *   Selectable alarm sounds (Rooster Crowing or Sci-Fi Alarm).
     *   Usage manual displayed dynamically based on the selected feature.
+    *   Visual feedback with animated progress bar and needles for the Pomodoro timer.
 
 *   **Progressive Web App (PWA):**
     *   **Installable:** Add the app to your home screen on mobile devices or desktop.
