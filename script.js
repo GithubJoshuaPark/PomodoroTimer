@@ -308,8 +308,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const offset = circumference - (pomodoroState.remainingTime / totalDuration) * circumference;
         pomodoroProgress.style.strokeDashoffset = offset;
 
-        // Change color based on work/break time and update title
+        // Change color based on work/break time and update title and time display
         const pomodoroTitle = document.getElementById('pomodoroTitle');
+        const pomodoroTimeElement = document.getElementById('pomodoroTime');
+        
         if (pomodoroState.isWorkTime) {
             // Working mode - yellow colors
             pomodoroProgress.style.stroke = 'orange';
@@ -317,6 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pomodoroTitle.className = 'working-mode';
             minuteNeedle.style.stroke = '#ffcc00'; // Yellow for minute needle
             secondNeedle.style.stroke = '#ffcc00'; // Yellow for second needle
+            pomodoroTimeElement.className = 'pomodoro-time-display pomodoro-time-working'; // Yellow time text
         } else {
             // Breaking mode - green colors
             pomodoroProgress.style.stroke = 'green';
@@ -324,6 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pomodoroTitle.className = 'breaking-mode';
             minuteNeedle.style.stroke = '#28a745'; // Green for minute needle
             secondNeedle.style.stroke = '#28a745'; // Green for second needle
+            pomodoroTimeElement.className = 'pomodoro-time-display pomodoro-time-breaking'; // Green time text
         }
 
         const minutes = Math.floor(pomodoroState.remainingTime / 60);

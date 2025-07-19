@@ -110,6 +110,14 @@ h1 {
     color: #28a745; /* Green color for breaking mode */
 }
 
+.pomodoro-time-working {
+    color: #ffcc00;
+}
+
+.pomodoro-time-breaking {
+    color: #28a745;
+}
+
 .mode-switcher {
     margin-bottom: 20px;
 }
