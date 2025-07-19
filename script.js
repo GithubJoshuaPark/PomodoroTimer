@@ -59,13 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const alertOkBtn = document.getElementById('alertOkBtn');
     const alarmSound = document.getElementById('alarmSound');
 
-    // Usage Manual elements
-    const usageManual = document.getElementById('usageManual');
-    const manualList = document.getElementById('manualList');
+    
 
     // Sound Selection elements
+    const stopwatchManual = document.getElementById('stopwatchManualContent').closest('.accordion-item');
+    const timerManual = document.getElementById('timerManualContent').closest('.accordion-item');
+    const pomodoroManual = document.getElementById('pomodoroManualContent').closest('.accordion-item');
     const roosterSoundBtn = document.getElementById('roosterSoundBtn');
-    const sciFiSoundBtn = document.getElementById('sciFiSoundBtn');
 
     let stopwatchState = { startTime: 0, elapsedTime: 0, timerInterval: null, laps: [] };
     let timerState = { duration: 0, remainingTime: 0, timerInterval: null, isRunning: false };
@@ -107,6 +107,21 @@ document.addEventListener('DOMContentLoaded', () => {
     sciFiSoundBtn.addEventListener('click', () => setAlarmSound('./sci-fi-alarm'));
 
 
+    // Accordion Logic
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            header.classList.toggle('active');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    });
+
     // --- Mode Switcher Logic ---
     stopwatchModeBtn.addEventListener('click', () => switchMode('stopwatch'));
     timerModeBtn.addEventListener('click', () => switchMode('timer'));
@@ -121,55 +136,30 @@ document.addEventListener('DOMContentLoaded', () => {
         timerModeBtn.classList.remove('active');
         pomodoroModeBtn.classList.remove('active');
 
-        // Activate selected mode
+        // Hide all manual sections and collapse them
+        [stopwatchManual, timerManual, pomodoroManual].forEach(manual => {
+            manual.style.display = 'none';
+            manual.querySelector('.accordion-header').classList.remove('active');
+            manual.querySelector('.accordion-content').style.maxHeight = null;
+        });
+
+        // Activate selected mode and show relevant manual
         if (mode === 'stopwatch') {
             stopwatchContainer.classList.add('active');
             stopwatchModeBtn.classList.add('active');
-            displayUsageManual('stopwatch');
+            stopwatchManual.style.display = 'block';
+            
         } else if (mode === 'timer') {
             timerContainer.classList.add('active');
             timerModeBtn.classList.add('active');
-            displayUsageManual('timer');
+            timerManual.style.display = 'block';
+            
         } else if (mode === 'pomodoro') {
             pomodoroContainer.classList.add('active');
             pomodoroModeBtn.classList.add('active');
-            displayUsageManual('pomodoro');
+            pomodoroManual.style.display = 'block';
+            
         }
-    }
-
-    // --- Usage Manual Logic ---
-    const usageManualContent = {
-        stopwatch: [
-            "Click 'Start' to begin timing.",
-            "Click 'Stop' to pause the stopwatch.",
-            "Click 'Reset' to clear the time and laps.",
-            "Click 'Lap' to record the current time without stopping."
-        ],
-        timer: [
-            "Enter hours, minutes, and seconds in the input fields.",
-            "Click 'Start' to begin the countdown.",
-            "Click 'Stop' to pause the timer.",
-            "Click 'Reset' to clear the timer and inputs.",
-            "An alarm will sound when the timer reaches zero."
-        ],
-        pomodoro: [
-            "Set your desired work and break durations in minutes.",
-            "Click 'Start' to begin the Pomodoro cycle (starts with work time).",
-            "The timer will automatically switch between work and break sessions.",
-            "Click 'Stop' to pause the current session.",
-            "Click 'Reset' to return to the initial work session and clear progress.",
-            "An alarm will sound when each session finishes."
-        ]
-    };
-
-    function displayUsageManual(mode) {
-        manualList.innerHTML = ''; // Clear previous manual
-        usageManualContent[mode].forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item;
-            manualList.appendChild(li);
-        });
-        usageManual.style.display = 'flex'; // Show the manual
     }
 
     // --- Stopwatch Logic ---
@@ -411,6 +401,15 @@ document.addEventListener('DOMContentLoaded', () => {
         switchMode('stopwatch');
         // Set initial alarm sound
         setAlarmSound('./rooster-crowing');
+
+        // Hide all manual sections initially
+        [stopwatchManual, timerManual, pomodoroManual].forEach(manual => {
+            manual.style.display = 'none';
+            manual.querySelector('.accordion-header').classList.remove('active');
+            manual.querySelector('.accordion-content').style.maxHeight = null;
+        });
+
+        
     }
 
     initialize();

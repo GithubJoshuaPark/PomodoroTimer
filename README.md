@@ -55,7 +55,7 @@ It's built using HTML, CSS, and JavaScript, demonstrating basic web development 
 
 1.  **Open `index.html`:** Simply open the `index.html` file in your web browser.
 2.  **Switch Modes:** Use the "Stopwatch", "Timer", and "Pomodoro" buttons at the top to switch between the different functionalities.
-3.  **Follow Usage Manual:** When you select a mode, a usage manual will appear at the top, guiding you on how to use that specific feature.
+3.  **View Usage Manuals:** The relevant usage manual for the selected mode will automatically appear below the mode switcher. Click on the manual's header to expand or collapse it.
 4.  **Select Alarm Sound:** Choose your preferred alarm sound ("Rooster" or "Sci-Fi") using the buttons provided.
 
 ## Project Structure

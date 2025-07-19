@@ -23,9 +23,45 @@
     <meta property="twitter:image" content="https://pomodoroex.web.app/images/thumbnail.png">
 </head>
 <body>
-    <div id="usageManual" class="usage-manual">
-        <h2>Usage Manual</h2>
-        <ol id="manualList"></ol>
+    <div class="accordion-container">
+        <div class="accordion-item">
+            <button class="accordion-header" id="stopwatchManualHeader">Stopwatch Usage Manual</button>
+            <div class="accordion-content" id="stopwatchManualContent">
+                <ol>
+                    <li>Click 'Start' to begin timing.</li>
+                    <li>Click 'Stop' to pause the stopwatch.</li>
+                    <li>Click 'Reset' to clear the time and laps.</li>
+                    <li>Click 'Lap' to record the current time without stopping.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" id="timerManualHeader">Timer Usage Manual</button>
+            <div class="accordion-content" id="timerManualContent">
+                <ol>
+                    <li>Enter hours, minutes, and seconds in the input fields.</li>
+                    <li>Click 'Start' to begin the countdown.</li>
+                    <li>Click 'Stop' to pause the timer.</li>
+                    <li>Click 'Reset' to clear the timer and inputs.</li>
+                    <li>An alarm will sound when the timer reaches zero.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" id="pomodoroManualHeader">Pomodoro Usage Manual</button>
+            <div class="accordion-content" id="pomodoroManualContent">
+                <ol>
+                    <li>Set your desired work and break durations in minutes.</li>
+                    <li>Click 'Start' to begin the Pomodoro cycle (starts with work time).</li>
+                    <li>The timer will automatically switch between work and break sessions.</li>
+                    <li>Click 'Stop' to pause the current session.</li>
+                    <li>Click 'Reset' to return to the initial work session and clear progress.</li>
+                    <li>An alarm will sound when each session finishes.</li>
+                </ol>
+            </div>
+        </div>
     </div>
     <main>
         <div class="mode-switcher">
