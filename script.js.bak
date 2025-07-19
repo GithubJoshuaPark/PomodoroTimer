@@ -298,47 +298,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Pomodoro Logic ---
     function formatPomodoroTime(seconds) {
         const m = Math.floor(seconds / 60).toString().padStart(2, '0');
-        const s = (seconds % 60).toString().padStart(2, '0');
-        return `${m}:${s}`;
-    }
-
-    function updatePomodoroDisplay() {
-        pomodoroTimeDisplay.textContent = formatPomodoroTime(pomodoroState.remainingTime);
-        const totalDuration = pomodoroState.isWorkTime ? pomodoroState.workDuration : pomodoroState.breakDuration;
-        const offset = circumference - (pomodoroState.remainingTime / totalDuration) * circumference;
-        pomodoroProgress.style.strokeDashoffset = offset;
-
-        // Change color based on work/break time and update title
-        const pomodoroTitle = document.getElementById('pomodoroTitle');
-        if (pomodoroState.isWorkTime) {
-            // Working mode - yellow colors
-            pomodoroProgress.style.stroke = 'orange';
-            pomodoroTitle.textContent = 'Working Time';
-            pomodoroTitle.className = 'working-mode';
-            minuteNeedle.style.stroke = '#ffcc00'; // Yellow for minute needle
-            secondNeedle.style.stroke = '#ffcc00'; // Yellow for second needle
         } else {
-            // Breaking mode - green colors
-            pomodoroProgress.style.stroke = 'green';
-            pomodoroTitle.textContent = 'Breaking Time';
-            pomodoroTitle.className = 'breaking-mode';
-            minuteNeedle.style.stroke = '#28a745'; // Green for minute needle
-            secondNeedle.style.stroke = '#28a745'; // Green for second needle
+            content.style.maxHeight = content.scrollHeight + "px";
         }
-
-        const minutes = Math.floor(pomodoroState.remainingTime / 60);
-        const seconds = pomodoroState.remainingTime % 60;
-        const minuteRotation = (minutes / 60) * 360 + (seconds / 60) * 6;
-        const secondRotation = (seconds / 60) * 360;
-
-        minuteNeedle.style.transform = `rotate(${minuteRotation}deg)`;
-        secondNeedle.style.transform = `rotate(${secondRotation}deg)`;
-    }
-
-    function startPomodoro() {
-        if (pomodoroState.isRunning) return;
-
-        pomodoroState.isRunning = true;
         startPomodoroBtn.disabled = true;
         stopPomodoroBtn.disabled = false;
         resetPomodoroBtn.disabled = false;

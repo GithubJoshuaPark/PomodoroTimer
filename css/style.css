@@ -100,6 +100,16 @@ h1 {
     margin-bottom: 20px;
 }
 
+.working-mode {
+    font-weight: bold;
+    color: #ffcc00; /* Yellow color for working mode */
+}
+
+.breaking-mode {
+    font-weight: bold;
+    color: #28a745; /* Green color for breaking mode */
+}
+
 .mode-switcher {
     margin-bottom: 20px;
 }

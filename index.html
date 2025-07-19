@@ -65,9 +65,9 @@
     </div>
     <main>
         <div class="mode-switcher">
-            <button id="stopwatchModeBtn" class="active">Stopwatch</button>
+            <button id="pomodoroModeBtn" class="active">Pomodoro</button>
+            <button id="stopwatchModeBtn">Stopwatch</button>
             <button id="timerModeBtn">Timer</button>
-            <button id="pomodoroModeBtn">Pomodoro</button>
         </div>
 
         <div class="sound-selection">
@@ -76,7 +76,32 @@
             <button id="sciFiSoundBtn" class="sound-btn">Sci-Fi</button>
         </div>
 
-        <div id="stopwatch" class="mode-container active">
+        <div id="pomodoro" class="mode-container active">
+            <h1 id="pomodoroTitle">Working Time</h1>
+            <div class="display pomodoro-display">
+                <svg class="progress-ring" width="220" height="220">
+                    <circle class="progress-ring-bg" cx="110" cy="110" r="100" />
+                    <circle id="pomodoroProgress" class="progress-ring-circle" cx="110" cy="110" r="100" />
+                    <line id="minuteNeedle" class="minute-needle" x1="110" y1="110" x2="110" y2="40" />
+                    <line id="secondNeedle" class="second-needle" x1="110" y1="110" x2="110" y2="20" />
+                </svg>
+                <span id="pomodoroTime" class="pomodoro-time-display">25:00</span>
+            </div>
+            <div class="pomodoro-controls controls">
+                <button id="startPomodoroBtn">Start</button>
+                <button id="stopPomodoroBtn">Stop</button>
+                <button id="resetPomodoroBtn">Reset</button>
+            </div>
+            <div class="pomodoro-settings">
+                <label for="workDuration">Work (minutes):</label>
+                <input type="number" id="workDuration" value="25" min="1" title="Set the duration for work sessions in minutes">
+                <br>
+                <label for="breakDuration">Break (minutes):</label>
+                <input type="number" id="breakDuration" value="5" min="1" title="Set the duration for break sessions in minutes">
+            </div>
+        </div>
+
+        <div id="stopwatch" class="mode-container">
             <h1>Stopwatch</h1>
             <div class="display stopwatch-display">00:00:00.000</div>
             <div class="controls">
@@ -102,31 +127,6 @@
                 <button id="startTimerBtn">Start</button>
                 <button id="stopTimerBtn">Stop</button>
                 <button id="resetTimerBtn">Reset</button>
-            </div>
-        </div>
-
-        <div id="pomodoro" class="mode-container">
-            <h1>Pomodoro Timer</h1>
-            <div class="display pomodoro-display">
-                <svg class="progress-ring" width="220" height="220">
-                    <circle class="progress-ring-bg" cx="110" cy="110" r="100" />
-                    <circle id="pomodoroProgress" class="progress-ring-circle" cx="110" cy="110" r="100" />
-                    <line id="minuteNeedle" class="minute-needle" x1="110" y1="110" x2="110" y2="40" />
-                    <line id="secondNeedle" class="second-needle" x1="110" y1="110" x2="110" y2="20" />
-                </svg>
-                <span id="pomodoroTime" class="pomodoro-time-display">25:00</span>
-            </div>
-            <div class="pomodoro-controls controls">
-                <button id="startPomodoroBtn">Start</button>
-                <button id="stopPomodoroBtn">Stop</button>
-                <button id="resetPomodoroBtn">Reset</button>
-            </div>
-            <div class="pomodoro-settings">
-                <label for="workDuration">Work (minutes):</label>
-                <input type="number" id="workDuration" value="25" min="1" title="Set the duration for work sessions in minutes">
-                <br>
-                <label for="breakDuration">Break (minutes):</label>
-                <input type="number" id="breakDuration" value="5" min="1" title="Set the duration for break sessions in minutes">
             </div>
         </div>
 
