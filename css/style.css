@@ -631,20 +631,26 @@ footer p {
     }
 }
 
-/* Hide analog clock on mobile */
+/* Hide analog clock on mobile, but keep the container for positioning */
 .is-mobile .pomodoro-display {
+    background: none; /* Remove background styles */
+    box-shadow: none;
+    filter: none;
+}
+
+/* Hide the SVG element containing the clock face and needles on mobile */
+.is-mobile .pomodoro-display .progress-ring {
     display: none;
 }
 
-/* Adjust digital display on mobile for better visibility */
+/* Ensure the digital time is centered and visible on mobile */
 .is-mobile .pomodoro-time-display {
-    position: static; /* Remove absolute positioning */
-    transform: none; /* Reset transform */
-    font-size: 4em; /* Increase font size to match other modes */
-    margin: 30px auto; /* Add margin like other displays */
-    display: block; /* Ensure it is a block element */
-    background-color: #f8f9fa;
-    padding: 15px 25px;
-    border-radius: 12px;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.05);
+    position: absolute; /* Keep it centered within the container */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4em; /* Make it larger to fill the space */
+    color: #333; /* Ensure it's visible without the clock background */
+    background-color: transparent; /* Remove any specific background */
+    backdrop-filter: none; /* Remove blur effect */
 }
