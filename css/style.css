@@ -283,7 +283,6 @@ h1 {
     stroke-width: 12;
     stroke-linecap: round;
     transform-origin: center;
-    transition: transform 1s linear;
 }
 
 .minute-needle {

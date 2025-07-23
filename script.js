@@ -73,7 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         workDuration: parseInt(workDurationInput.value) * 60, 
         breakDuration: parseInt(breakDurationInput.value) * 60, 
         remainingTime: 25 * 60, 
-        timerInterval: null, 
+        lastTime: 0, // Add for requestAnimationFrame
+        animationFrameId: null, // Add for requestAnimationFrame
         isWorkTime: true, 
         isRunning: false 
     };
@@ -339,22 +340,21 @@ document.addEventListener('DOMContentLoaded', () => {
         secondNeedle.style.transform = `rotate(${secondRotation}deg)`;
     }
 
-    function startPomodoro() {
-        if (pomodoroState.isRunning) return;
+    function pomodoroLoop(timestamp) {
+        if (!pomodoroState.isRunning) return;
 
-        pomodoroState.isRunning = true;
-        startPomodoroBtn.disabled = true;
-        stopPomodoroBtn.disabled = false;
-        resetPomodoroBtn.disabled = false;
-        workDurationInput.disabled = true;
-        breakDurationInput.disabled = true;
+        if (!pomodoroState.lastTime) {
+            pomodoroState.lastTime = timestamp;
+        }
 
-        pomodoroState.timerInterval = setInterval(() => {
+        const elapsed = timestamp - pomodoroState.lastTime;
+
+        if (elapsed >= 1000) {
             pomodoroState.remainingTime--;
+            pomodoroState.lastTime = timestamp - (elapsed % 1000);
             updatePomodoroDisplay();
 
-            if (pomodoroState.remainingTime <= 0) {
-                clearInterval(pomodoroState.timerInterval);
+            if (pomodoroState.remainingTime < 0) { // Changed to < 0 to handle the final second correctly
                 alarmSound.play();
                 if (pomodoroState.isWorkTime) {
                     showCustomAlert('Work time finished! Starting break.');
@@ -365,15 +365,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     pomodoroState.isWorkTime = true;
                     pomodoroState.remainingTime = parseInt(workDurationInput.value) * 60;
                 }
-                pomodoroState.isRunning = false;
-                startPomodoro(); // Automatically start next phase
+                // No need to call startPomodoro() again, the loop continues
+                updatePomodoroDisplay(); // Update display immediately for the new session
             }
-        }, 1000);
+        }
+
+        pomodoroState.animationFrameId = requestAnimationFrame(pomodoroLoop);
+    }
+
+    function startPomodoro() {
+        if (pomodoroState.isRunning) return;
+
+        pomodoroState.isRunning = true;
+        startPomodoroBtn.disabled = true;
+        stopPomodoroBtn.disabled = false;
+        resetPomodoroBtn.disabled = false;
+        workDurationInput.disabled = true;
+        breakDurationInput.disabled = true;
+
+        pomodoroState.animationFrameId = requestAnimationFrame(pomodoroLoop);
     }
 
     function stopPomodoro() {
-        clearInterval(pomodoroState.timerInterval);
+        if (pomodoroState.animationFrameId) {
+            cancelAnimationFrame(pomodoroState.animationFrameId);
+            pomodoroState.animationFrameId = null;
+        }
         pomodoroState.isRunning = false;
+        pomodoroState.lastTime = 0;
         startPomodoroBtn.disabled = false;
         stopPomodoroBtn.disabled = true;
     }
