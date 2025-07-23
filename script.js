@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Detect mobile device and add a class to the body
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        document.body.classList.add('is-mobile');
+    }
+
     // Register service worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {

@@ -630,3 +630,21 @@ footer p {
         margin: 0 auto; /* Ensure centering on mobile */
     }
 }
+
+/* Hide analog clock on mobile */
+.is-mobile .pomodoro-display {
+    display: none;
+}
+
+/* Adjust digital display on mobile for better visibility */
+.is-mobile .pomodoro-time-display {
+    position: static; /* Remove absolute positioning */
+    transform: none; /* Reset transform */
+    font-size: 4em; /* Increase font size to match other modes */
+    margin: 30px auto; /* Add margin like other displays */
+    display: block; /* Ensure it is a block element */
+    background-color: #f8f9fa;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.05);
+}
